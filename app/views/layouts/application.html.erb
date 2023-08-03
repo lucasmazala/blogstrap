@@ -7,10 +7,18 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <!--%= stylesheet_pack_tag "application", media: 'all', "data-turbo-track": "reload" % aula 9 com erro --> <!--https://stackoverflow.com/questions/75639978/rails-7-error-undefined-method-javascript-pack-tag-for-actionviewbase0x0-->
     <%= javascript_importmap_tags %>
+    
+        
   </head>
 
   <body>
-    <%= yield %>
+  
+    <%= render 'layouts/topnavbar'%>
+
+    <%= yield %>  <!-- onde o ruby on rails preenche com codigo das telas (views)-->
+    
+    <%=render 'layouts/footer'%>
   </body>
 </html>

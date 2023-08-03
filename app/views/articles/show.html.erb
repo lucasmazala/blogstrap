@@ -4,10 +4,10 @@
 
 <ul>
     <li><%= link_to 'Edit', edit_article_path(@article) %></li>
-        <li><%= link_to 'Destroy', article_path,
+        <li><%= link_to 'Destroy', article_path(@article),
         data: 
         {   turbo_method: :delete,
-            turbo_confirm: 'Are you sure'} %> </li>
+            turbo_confirm: 'Are you sure'} %> </li> <!--Comentários da aula 8-->
     <li><%= link_to 'Back', root_path %></li>
 </ul>
 

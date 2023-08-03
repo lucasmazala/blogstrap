@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy] 
+  # before_action diz que antes rodar alguma action é para fazer um determinado comando. 
   def index
     @articles = Article.all
   end
@@ -33,7 +34,7 @@ class ArticlesController < ApplicationController
 
   def destroy # aula 8 
     @article.destroy
-    redirect_to root_path
+    redirect_to root_path, status: :see_other #root_path diz para ir para a action index
   end
 
   private 
