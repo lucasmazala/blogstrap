@@ -2,7 +2,14 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy] 
   # before_action diz que antes rodar alguma action é para fazer um determinado comando. 
   def index
-    @articles = Article.all
+    @highlights = Article.desc_order.first(3)# traz os 3 artigos mais recentes.
+    
+    current_page = (params[:page] || 1).to_i # params pega o ṇª da pag, se não tiver vai para a 1ª pag
+    highlights_ids = @highlights.pluck(:id).join(',') # separa os 3 primeiros IDS. Eles só serão exibidos nos highlights
+    
+    @articles = Article.without_highlights(highlights_ids) #organização aula 12 - 30min 
+                       .desc_order    
+                       .page(current_page) #usando kaminari para paginação.  aula 11 - 9:52 - https://github.com/kaminari/kaminari
   end
 
   def show;  end # aula 8

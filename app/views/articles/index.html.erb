@@ -1,20 +1,28 @@
-<h1>Articles</h1>
+<%=render_if @highlights[0].present?, 'longer_featured', article: @highlights[0] %> <!-- pega o post mais recente do array com 3 criado no controller-->
 
-<%= link_to 'New Article', new_article_path%>
+<div class="row mb-2">
+  <%= render_if @highlights[1].present?, 'medium_featured', article: @highlights[1]%> <!-- render_if variavel.present só renderiza se não for nil aula12 - 22:00-->
+  <%= render_if @highlights[2].present?, 'medium_featured', article: @highlights[2]%>  <!-- pega o terceiro post mais recente -->
+</div>
 
-<ul>
-    <% @articles.each do |article| %>
-        <li>
-           <!--  <a href="<%= article_path(article) %>">  # Trocado por link_to
-                article_path = faz um path para pegarmos um determinado article pelo ID. Não precisa colocar ponto ID porque esse helper sabe automaticamente Aula5
-                </a>-->
-                <%= link_to article.title, article %>  <!-- primeiro arg é qual string aparecerá para ter o link. Segundo arg(article) é de onde será tirado o ID-->            
-        </li>
-    <% end %>
-</ul>
-
-
-<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top"> <!-- ver problema do tooltip-->
+<div class="row g-5">
+  <div class="col-md-8">
+    <h3 class="pb-4 mb-4 fst-italic border-bottom">
+      From my Experience
+    </h3>
+    
+    <p><%= link_to 'New Article', new_article_path, class: 'btn btn-primary'%>
+    </p>
+   
+      <%= render @articles%> <!-- pega do partial article pelo framework do hails. Faz um for com todos os article e renderiza cada um. Olhar aula 10 - 19min-->
+      
+      <%= render 'pagination' %>  
+  </div>
+  
+  <%=render 'right_side'%>
+</div>
+<!--
+<button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top"> !-- ver problema do tooltip--
   Tooltip on top
 </button>
 <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip on right">
@@ -26,3 +34,4 @@
 <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="left" title="Tooltip on left">
   Tooltip on left
 </button>
+-->
