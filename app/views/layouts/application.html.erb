@@ -20,9 +20,12 @@
   <body>
   
     <%= render 'layouts/topnavbar'%>
+
     <main class="container">
+      <%= render 'layouts/flash_messages'%>
       <%= yield %>  <!-- onde o ruby on rails preenche com codigo das telas (views)-->
     </main>
+
     <%=render 'layouts/footer'%>
   </body>
 </html>

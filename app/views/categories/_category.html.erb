@@ -1,0 +1,21 @@
+<div id="<%= dom_id category %>">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>Name:</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <%= category.name %>
+      <%= link_to 'Edit', edit_category_path(category) %> <!--É sem o @ porque é um helper-->
+    
+      <%= link_to 'Destroy', category_path(category),
+          data: 
+          {   turbo_method: :delete,
+              turbo_confirm: 'Are you sure'}
+             %>  <!--Comentários da aula 8-->
+    </tbody>        
+  </table>
+
+</div>
