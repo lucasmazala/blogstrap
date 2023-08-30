@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!, except: %i[index show] # aula 14 - 18 min
   before_action :set_article, only: %i[show edit update destroy] 
   # before_action diz que antes rodar alguma action é para fazer um determinado comando. 
   def index
@@ -15,11 +16,11 @@ class ArticlesController < ApplicationController
   def show;  end # aula 8
 
   def new #cria o article vazio
-    @article = Article.new
+    @article = current_user.articles.new
   end
 
   def create # pega os parâmetros para salvar 
-    @article = Article.new(article_params)
+    @article = current_user.articles.new(article_params)
 
     if @article.save
       redirect_to @article, notice: "Article was successfully created."

@@ -18,5 +18,6 @@ module Blogstrap
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.action_mailer.default_url_options = { host: 'localhost', port: 3000 } # aula 14 5min
   end
 end
