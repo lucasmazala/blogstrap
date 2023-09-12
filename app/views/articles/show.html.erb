@@ -6,13 +6,14 @@
   
   <p><%= @article.body %></p>
 
-  <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-secondary' %> 
+  <%= link_to 'Edit', edit_article_path(@article), 
+    class: 'btn btn-secondary' if policy(@article).update? %> <!-- só aparece o botão se o user for o mesmo que criou o post - 56 min aula 15-->
   
   <%= link_to 'Destroy', article_path(@article),
         data: 
         {   turbo_method: :delete,
             turbo_confirm: 'Are you sure'},
-            class:'btn btn-danger' %>  <!--Comentários da aula 8-->
+            class:'btn btn-danger'  if policy(@article).destroy? %>  <!--Comentários da aula 8-->
 
     <%= link_to 'Back', root_path, class: 'btn btn-secondary' %>
 </article>

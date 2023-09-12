@@ -163,6 +163,8 @@ GEM
     public_suffix (5.0.3)
     puma (5.6.6)
       nio4r (~> 2.0)
+    pundit (2.3.1)
+      activesupport (>= 3.0.0)
     racc (1.7.1)
     rack (2.2.7)
     rack-test (2.1.0)
@@ -203,6 +205,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.5)
+    rolify (6.0.1)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -271,7 +274,9 @@ DEPENDENCIES
   kaminari (~> 1.2)
   letter_opener (~> 1.8)
   puma (~> 5.0)
+  pundit (~> 2.3)
   rails (~> 7.0.6)
+  rolify (~> 6.0, >= 6.0.1)
   sassc-rails
   selenium-webdriver
   simple_form (~> 5.2)

@@ -53,6 +53,7 @@ class ArticlesController < ApplicationController
 
   def set_article 
     @article = Article.find(params[:id])
+    authorize @article # aula-15 30min
   end
 
 end

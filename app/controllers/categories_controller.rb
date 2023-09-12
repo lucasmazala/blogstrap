@@ -1,14 +1,16 @@
 class CategoriesController < ApplicationController
+  before_action :authenticate_user! #Verifica se o usuário está logado aula 15 - 50min
   before_action :set_category, only: %i[edit update destroy ]
 
   # GET /categories or /categories.json
   def index
-    @categories = Category.sorted
+    @categories = policy_scope(Category.sorted) # policy_scope é usado quando vai trazer vários registros
   end
 
   # GET /categories/new
   def new
     @category = Category.new
+    authorize @category # authorize é usado quando traz apenas um registro
   end
 
   # GET /categories/1/edit
@@ -18,6 +20,7 @@ class CategoriesController < ApplicationController
   # POST /categories or /categories.json
   def create
     @category = Category.new(category_params)
+    authorize @category # authorize manda para category_policy
 
     respond_to do |format|
       if @category.save
@@ -60,6 +63,7 @@ class CategoriesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find(params[:id])
+      authorize @category  #aula 15 1:20min
     end
 
     # Only allow a list of trusted parameters through.
