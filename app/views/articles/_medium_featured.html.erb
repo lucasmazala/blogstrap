@@ -6,11 +6,12 @@
           </strong>
           <h3 class="mb-0"><%= article.title%></h3>
           
-          <div class="mb-1 text-body-secondary"><%= month_day_comma_year(article.created_at)%> by <%= article.user.email%> 
-          </div> <!--aula 12-->
+          <div class="mb-1 text-body-secondary">
+          <%= render 'article_detail', article: article %>
+          </div> <!--aula 12 e 16 11min -->
           
           <p class="card-text mb-auto">
-            <%= truncate(article.body, length: 150)%>
+            <%= truncate(article.body, length: 100)%>
           </p>
           
             <%=link_to 'Continue reading...', article, class:"icon-link gap-1 icon-link-hover stretched-link" %>

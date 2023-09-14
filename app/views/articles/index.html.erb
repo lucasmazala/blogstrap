@@ -1,28 +1,33 @@
 <%=render_if @highlights[0].present?, 'longer_featured', article: @highlights[0] %> <!-- pega o post mais recente do array com 3 criado no controller-->
-
 <div class="row mb-2">
   <%= render_if @highlights[1].present?, 'medium_featured', article: @highlights[1]%> <!-- render_if variavel.present só renderiza se não for nil aula12 - 22:00-->
   <%= render_if @highlights[2].present?, 'medium_featured', article: @highlights[2]%>  <!-- pega o terceiro post mais recente -->
 </div>
-
 <div class="row g-5">
   <div class="col-md-8">
     <h3 class="pb-4 mb-4 fst-italic border-bottom">
       From my Experience
     </h3>
-    
     <p>
       <%= link_to 'New Article', new_article_path,
-                   class: 'btn btn-primary' if user_signed_in?%> <!--aula 15 1:02 min-- >
+                   class: 'btn btn-success' if user_signed_in?%> <!-- aula 15 1:02 min -->
     </p>
-   
-      <%= render @articles%> <!-- pega do partial article pelo framework do hails. Faz um for com todos os article e renderiza cada um. Olhar aula 10 - 19min-->
-      
-      <%= render 'pagination' %>  
+    <%= render @articles%> <!-- pega do partial article pelo framework do hails. Faz um for com todos os article e renderiza cada um. Olhar aula 10 - 19min-->
+    <%= render 'pagination' %>
   </div>
-  
   <%=render 'right_side'%>
 </div>
+
+<%= content_for :category_filter do %>
+  <div class="nav-scroller py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+      <% @categories.each do |category| %>
+        <%= link_to category.name, root_path(category: category.name),
+          class: "p-2 link-secondary #{'category-active' if category.name.to_s == params[:category]}" %> <!-- aula 16 25 e 29 min-->
+      <% end %>
+    </nav>
+  </div>
+<%end%>
 <!--
 <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top"> !-- ver problema do tooltip--
   Tooltip on top

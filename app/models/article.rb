@@ -9,4 +9,5 @@ class Article < ApplicationRecord
     
     scope :desc_order, -> {order(created_at: :desc)} #aula 12 - 30min
     scope :without_highlights, ->(ids){ where("id NOT IN(#{ids})") if ids.present? } # o if é para não dar problema quando não houver posts utilizando o bd postgress aula 13 4min
+    scope :filter_by_category, -> (category) {where category_id: category.id if category.present? } # aula 16 32 min(modificações)
 end

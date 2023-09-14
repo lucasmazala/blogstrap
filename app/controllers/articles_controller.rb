@@ -1,16 +1,26 @@
 class ArticlesController < ApplicationController
+  include Paginable
+
   before_action :authenticate_user!, except: %i[index show] # aula 14 - 18 min
   before_action :set_article, only: %i[show edit update destroy] 
   # before_action diz que antes rodar alguma action é para fazer um determinado comando. 
   def index
-    @highlights = Article.desc_order.first(3)# traz os 3 artigos mais recentes.
+    category = Category.find_by_name(params[:category]) if params[:category].present? # É chamado em filter_by_category e em highlights - aula 16 32 min
+
+    @highlights = Article.filter_by_category(category)
+    .desc_order
+    .first(3)# traz os 3 artigos mais recentes aula 16.
     
-    current_page = (params[:page] || 1).to_i # params pega o ṇª da pag, se não tiver vai para a 1ª pag
     highlights_ids = @highlights.pluck(:id).join(',') # separa os 3 primeiros IDS. Eles só serão exibidos nos highlights
     
+
     @articles = Article.without_highlights(highlights_ids) #organização aula 12 - 30min 
+                       .filter_by_category(category)  
                        .desc_order    
                        .page(current_page) #usando kaminari para paginação.  aula 11 - 9:52 - https://github.com/kaminari/kaminari
+
+    @categories = Category.sorted # Envia essa varíável para a view index em category. aula 16 23 min
+
   end
 
   def show;  end # aula 8
