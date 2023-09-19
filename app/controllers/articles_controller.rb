@@ -5,21 +5,25 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy] 
   # before_action diz que antes rodar alguma action é para fazer um determinado comando. 
   def index
-    category = Category.find_by_name(params[:category]) if params[:category].present? # É chamado em filter_by_category e em highlights - aula 16 32 min
+    @categories = Category.sorted # Envia essa varíável para a view index em category. aula 16 23 min. AUla 17 13 min.
+    category = @categories.select { |c| c.name == params[:category]}[0] if params[:category].present? # É chamado em filter_by_category e em highlights - aula 16 32 min. Aula 17 15min(importante).
 
-    @highlights = Article.filter_by_category(category)
-    .desc_order
-    .first(3)# traz os 3 artigos mais recentes aula 16.
+    # includes é usado para evitar muitas queries desnecessárias N+1 - Aula 17 10:00 min
+    @highlights = Article.includes(:category, :user)  
+                  .filter_by_category(category)
+                  .desc_order
+                  .first(3)# traz os 3 artigos mais recentes aula 16.  # includes é usado para evitar muitas queries desnecessárias N+1 - Aula 17 10:00 min
     
     highlights_ids = @highlights.pluck(:id).join(',') # separa os 3 primeiros IDS. Eles só serão exibidos nos highlights
     
 
-    @articles = Article.without_highlights(highlights_ids) #organização aula 12 - 30min 
+    @articles = Article.includes(:category, :user) # aula 17
+                       .without_highlights(highlights_ids) #organização aula 12 - 30min 
                        .filter_by_category(category)  
                        .desc_order    
                        .page(current_page) #usando kaminari para paginação.  aula 11 - 9:52 - https://github.com/kaminari/kaminari
 
-    @categories = Category.sorted # Envia essa varíável para a view index em category. aula 16 23 min
+    
 
   end
 
