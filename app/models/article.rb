@@ -2,6 +2,8 @@ class Article < ApplicationRecord
     belongs_to :category
     belongs_to :user
 
+    has_many :comments, dependent: :destroy # destroy = Se o article for exluído, todos os comentários também serão. 
+
     validates :title, presence: true,  length: { minimum: 5, maximum: 30}
     validates :body, presence:true, length: { minimum: 10, maximum: 10000}
 

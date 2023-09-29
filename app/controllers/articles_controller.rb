@@ -2,7 +2,8 @@ class ArticlesController < ApplicationController
   include Paginable
 
   before_action :authenticate_user!, except: %i[index show] # aula 14 - 18 min
-  before_action :set_article, only: %i[show edit update destroy] 
+  before_action :set_article, only: %i[edit update destroy] 
+  before_action :set_categories, only: %i[new create edit update] # vai pegar a variável de instância no private "@categories" e passar para a view  
   # before_action diz que antes rodar alguma action é para fazer um determinado comando. 
   def index
     @categories = Category.sorted # Envia essa varíável para a view index em category. aula 16 23 min. AUla 17 13 min.
@@ -29,7 +30,10 @@ class ArticlesController < ApplicationController
 
   end
 
-  def show;  end # aula 8
+  def show
+    @article = Article.includes(comments: :user).find(params[:id]) # aula 19 33min
+    authorize @article 
+  end 
 
   def new #cria o article vazio
     @article = current_user.articles.new
@@ -70,6 +74,10 @@ class ArticlesController < ApplicationController
   def set_article 
     @article = Article.find(params[:id])
     authorize @article # aula-15 30min
+  end
+
+  def set_categories 
+    @categories = Category.sorted 
   end
 
 end

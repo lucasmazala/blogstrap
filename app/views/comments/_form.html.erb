@@ -1,0 +1,8 @@
+<%= simple_form_for [@article, @article.comments.build] do |f|%> <!-- aula 19 14 min-->
+  <div class="form-inputs">
+    <%= f.input :body, input_html: { rows: 10}%> <!-- o campo body tem 10 linhas para adicionar o comentário -->
+  </div>
+  <div class="form-action">
+    <%= f.button :submit, class: 'btn btn-primary'%>
+  </div>
+<%end%>
