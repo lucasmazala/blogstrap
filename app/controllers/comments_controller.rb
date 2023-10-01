@@ -6,6 +6,14 @@ class CommentsController < ApplicationController
         @article.comments.create(comment_params.to_h.merge!({ user_id: current_user.id })) #aula 19 25 min
         redirect_to article_path(@article), notice: 'Comment was successfully created.'
     end
+
+    def destroy 
+        comment = @article.comments.find(params[:id])
+        authorize comment # chama o pundit e faz a checagem se os usuários são iguais. aula 20 9 min
+
+        comment.destroy
+        redirect_to article_path(@article), notice: 'Comment was successfully destroyed.'
+    end
     
     private 
 

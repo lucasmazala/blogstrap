@@ -7,4 +7,16 @@ class User < ApplicationRecord
   # :lockable, :timeoutable and :omniauthable
   devise :trackable , :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+
+ 
+  validate :password_complexity #exige esse método no private. aula 20 3min
+
+  private 
+
+  def password_complexity
+    return if password.nil?
+
+    errors.add :password, :complexity unless CheckPasswordComplexityService.call(password)
+  end
 end
