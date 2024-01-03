@@ -26,3 +26,5 @@ Things you may want to cover:
 * <a hef=" https://lucasmazala.github.io/blogstrap/app/views/articles/_article.html.erb">Clique aqui1</a>
 
 <a hef="https://github.com/lucasmazala/blogstrap/app/views/articles/_article.html.erb"> Clique aqui231</a>
+
+https://www.youtube.com/playlist?list=PLqsayW8DhUmv49CBT7AvetMplBViAcwuk
