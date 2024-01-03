@@ -6,7 +6,7 @@ class CheckPasswordComplexityService < ApplicationService
       @required_complexity = required_complexity
     end
   
-    #exigências para criar senha de usuário
+    #exigências para criar senha de usuário aula 20
     def call 
       score = uppercase_letters? + digits? + extra_chars? + downcase_letters?
       score >= required_complexity
@@ -30,3 +30,5 @@ class CheckPasswordComplexityService < ApplicationService
       @password.match(/[A-Z]/) ? 1 : 0
     end
   end
+
+#explicação completa https://www.youtube.com/watch?v=Lj2ytPX59oU
