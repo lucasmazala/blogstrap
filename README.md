@@ -23,4 +23,4 @@ Things you may want to cover:
 
 * ...
 
-* <a hef="app/views/articles/_article.html.erb">Clique aqui</a>
+* <a hef=" https://lucasmazala.github.io/blogstrap/app/views/articles/_article.html.erb">Clique aqui</a>
