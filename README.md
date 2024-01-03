@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+* <a hef:"app/views/articles/_article.html.erb">Clique aqui</a>
