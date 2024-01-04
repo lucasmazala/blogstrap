@@ -26,7 +26,7 @@ Devise.setup do |config|
   # with default "from" parameter.
   #config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com' antigo antes da aula 23
    config.mailer_sender = if Rails.env.production?
-     Rails.application.credentials.gmail[:user_name].to_s 
+     Rails.application.credentials.gmail[:mailer_sender]
    else
     'devise@example.com'
    end
