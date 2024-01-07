@@ -1,7 +1,7 @@
 module ApplicationHelper
 
     def month_day_comma_year(datetime) # formata o modo de exibição da data
-        datetime.strftime('%B %e, %Y') 
+        l(datetime, format:'%B %e, %Y').capitalize #aula 25 44min 
     end # aula 10 37:00 min  e aula 22 13 min
 
     #IMPORTANTE.  Método para caso não tenha nenhum article criado, não quebrar o sistema. Aula 12 - 21:00
