@@ -92,3 +92,5 @@ gem 'rolify', '~> 6.0', '>= 6.0.1'
 gem "groupdate", "~> 6.4"
 
 gem 'pg', '~> 1.5', '>= 1.5.4', group: :production
+
+gem 'devise-i18n' # https://github.com/tigrish/devise-i18n  - Aula 24 4min
