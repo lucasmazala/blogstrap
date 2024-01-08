@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
                        .desc_order    
                        .page(current_page) #usando kaminari para paginação.  aula 11 - 9:52 - https://github.com/kaminari/kaminari
 
-    @archives = Article.group_by_month(:created_at, format: '%B %Y').count # Aula 18 17min. Usando a gem groupdate. A variável recebe umaa chave e um valor. Created_at e count
+    @archives = Article.group_by_month(:created_at, format: '%B %Y', locale: :en).count # Aula 18 17min e aula 25 3min. Usando a gem groupdate. A variável recebe umaa chave e um valor. Created_at e count
 
   end
 

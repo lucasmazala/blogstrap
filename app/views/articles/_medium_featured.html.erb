@@ -14,7 +14,7 @@
             <%= truncate(article.body, length: 100)%>
           </p>
           
-            <%=link_to 'Continue reading...', article, class:"icon-link gap-1 icon-link-hover stretched-link" %>
+            <%=link_to t('articles.continue_reading'), article, class:"icon-link gap-1 icon-link-hover stretched-link" %>
             <svg class="bi"><use xlink:href="#chevron-right"/></svg>
           
         </div>
