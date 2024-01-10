@@ -9,8 +9,8 @@
       <%= t'.subtitle'%> <!--t'articles.index.subtitle' aula 23 36min-->
     </h3>
     <p>
-      <%= link_to t('.new_article'), new_article_path,
-                   class: 'btn btn-success' if user_signed_in?%> <!-- aula 15 1:02 min -->
+      <%= link_to t('articles.new.title'), new_article_path,
+                   class: 'btn btn-success' if user_signed_in?%> <!-- aula 15 1:02 min e aula 26 43:50min-->
     </p>
     <%= render @articles%> <!-- pega do partial article pelo framework do hails. Faz um for com todos os article e renderiza cada um. Olhar aula 10 - 19min-->
     <%= render 'pagination' %>

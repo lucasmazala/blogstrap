@@ -2,7 +2,7 @@ class CategoryPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      if user.admin? || user.has_role?(:moderator) # aula 15 1:17 mim
+      if user&.admin? || user&.has_role?(:moderator) # aula 15 1:17 mim
         scope.all
       else
         raise Pundit::NotAuthorizedError
@@ -12,7 +12,7 @@ class CategoryPolicy < ApplicationPolicy
 
   def create?
     #user&.admin? # aula 15 - 45 min
-    user.admin? || user.has_role?(:moderator)
+    user&.admin? || user&.has_role?(:moderator)
   end
 
   def index?
@@ -20,10 +20,10 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def update?
-    user.admin? || user.has_role?(:moderator)
+    user&.admin? || user&.has_role?(:moderator)
   end
 
   def destroy?
-    user.admin?
+    user&.admin?
   end
 end

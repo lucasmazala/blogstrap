@@ -4,10 +4,10 @@
   <div class="form-inputs"  >
     <%= form.input :title %>
     <%= form.input :body, input_html: {rows: 10} %>
-    <%= form.association :category, collection: @categories, prompt: "Choose a Category"%> <!--aula 13--> <!-- atualizção aula 19 3 min-->
+    <%= form.association :category, collection: @categories, prompt: t('articles.form.choose_category')%> <!--aula 13--> <!-- atualizção aula 19 3 min-->
   </div>
    <div class="form-actions"  >
     <%= form.button :submit, class: 'btn btn-primary' %>
-    <%= link_to 'Back', root_path,  class: 'btn btn-secondary' %>
+    <%= link_to t('app.button.back'), root_path,  class: 'btn btn-secondary' %>
   </div>
 <% end %>

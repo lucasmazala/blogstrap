@@ -43,7 +43,7 @@ class ArticlesController < ApplicationController
     @article = current_user.articles.new(article_params)
 
     if @article.save
-      redirect_to @article, notice: "Article was successfully created."
+      redirect_to @article, notice: t('.success') #aula 26 26:19min
     else
       render :new, status: :unprocessable_entity
     end
@@ -54,7 +54,7 @@ class ArticlesController < ApplicationController
 
   def update 
     if @article.update(article_params)
-      redirect_to @article, notice: "Article was successfully updated."
+      redirect_to @article, notice: t('.success') #aula 26 26min
     else
       render :edit, status: :unprocessable_entity
     end
@@ -62,7 +62,7 @@ class ArticlesController < ApplicationController
 
   def destroy # aula 8 
     @article.destroy
-    redirect_to root_path, status: :see_other ,  notice: "Article was successfully destroyed." #root_path diz para ir para a action index
+    redirect_to root_path, status: :see_other ,  notice: t('.success')  #root_path diz para ir para a action index
   end
 
   private 
